@@ -35,6 +35,10 @@ inputs:
     description: 'A sample of an ideal response based on the sample prompt'
     required: false
     default: ''
+  language:
+    description: 'Language to use for the autofill, default is English'
+    required: false
+    default: 'english'
 
 runs:
   using: 'docker'

@@ -10,7 +10,7 @@ SAMPLE_PROMPT = """
 Write a pull request description focusing on the motivation behind the change and why it improves the project.
 Go straight to the point.
 
-The title of the pull request is "Enable valgrind on CI" and the following changes took place: 
+The title of the pull request is "Enable valgrind on CI" and the following changes took place:
 
 Changes in file .github/workflows/build-ut-coverage.yml: @@ -24,6 +24,7 @@ jobs:
          run: |
@@ -34,7 +34,7 @@ Changes in file test/CommandParserTest.cpp: @@ -566,7 +566,7 @@ TEST(CommandPars
      double expectedDouble { std::numeric_limits<double>::max() };
 -    long double expectedLongDouble { std::numeric_limits<long double>::max() };
 +    long double expectedLongDouble { 123455678912349.1245678912349L };
- 
+
      auto command = UnparsedCommand::create(expectedCommand, "dummyDescription"s)
                         .withArgs<int, long, unsigned long, long long, unsigned long long, float, double, long double>();
 """
@@ -81,6 +81,13 @@ def main():
         required=False,
         help="A comma-separated list of GitHub usernames that are allowed to trigger the action, empty or missing means all users are allowed",
     )
+    parser.add_argument(
+        "--language",
+        type=str,
+        required=False,
+        default='english',
+        help="Language to use for the autofill, default is English",
+    )
     args = parser.parse_args()
 
     github_api_url = args.github_api_url
@@ -88,6 +95,7 @@ def main():
     github_token = args.github_token
     pull_request_id = args.pull_request_id
     openai_api_key = args.openai_api_key
+    language = args.language
     allowed_users = os.environ.get("INPUT_ALLOWED_USERS", "")
     if allowed_users:
         allowed_users = allowed_users.split(",")
@@ -154,7 +162,7 @@ def main():
         pull_request_files.extend(pull_files_chunk)
 
         completion_prompt = f"""
-Write a pull request description focusing on the motivation behind the change and why it improves the project.
+Write a pull request description in {language} focusing on the motivation behind the change and why it improves the project.
 Go straight to the point.
 
 The title of the pull request is "{pull_request_title}" and the following changes took place: \n
