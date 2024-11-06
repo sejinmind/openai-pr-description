@@ -1,4 +1,4 @@
-# `hohyon-ryu/openai-pr-description` GitHub Action
+# `sejinmind/openai-pr-description` GitHub Action
 
 Autofill the description of your pull requests with the power of OpenAI!
 
