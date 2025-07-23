@@ -99,9 +99,9 @@ def main():
     allowed_users = os.environ.get("INPUT_ALLOWED_USERS", "")
     if allowed_users:
         allowed_users = allowed_users.split(",")
-    open_ai_model = os.environ.get("INPUT_OPENAI_MODEL", "gpt-3.5-turbo")
-    max_prompt_tokens = int(os.environ.get("INPUT_MAX_TOKENS", "1000"))
-    model_temperature = float(os.environ.get("INPUT_TEMPERATURE", "0.6"))
+    open_ai_model = os.environ.get("INPUT_OPENAI_MODEL", "gpt-4.1")
+    max_prompt_tokens = int(os.environ.get("INPUT_MAX_TOKENS", "4096"))
+    model_temperature = float(os.environ.get("INPUT_TEMPERATURE", "0.1"))
     model_sample_prompt = os.environ.get("INPUT_MODEL_SAMPLE_PROMPT", SAMPLE_PROMPT)
     model_sample_response = os.environ.get(
         "INPUT_MODEL_SAMPLE_RESPONSE", GOOD_SAMPLE_RESPONSE
@@ -177,7 +177,7 @@ The title of the pull request is "{pull_request_title}" and the following change
         patch = pull_request_file["patch"]
         completion_prompt += f"Changes in file {filename}: {patch}\n"
 
-    max_allowed_tokens = 2048  # 4096 is the maximum allowed by OpenAI for GPT-3.5
+    max_allowed_tokens = 4096
     characters_per_token = 4  # The average number of characters per token
     max_allowed_characters = max_allowed_tokens * characters_per_token
     if len(completion_prompt) > max_allowed_characters:
