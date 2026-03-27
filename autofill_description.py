@@ -99,9 +99,9 @@ def main():
     allowed_users = os.environ.get("INPUT_ALLOWED_USERS", "")
     if allowed_users:
         allowed_users = allowed_users.split(",")
-    open_ai_model = os.environ.get("INPUT_OPENAI_MODEL", "gpt-5.1")
+    open_ai_model = os.environ.get("INPUT_OPENAI_MODEL", "gpt-5.4")
     max_prompt_tokens = int(os.environ.get("INPUT_MAX_TOKENS", "4096"))
-    model_temperature = float(os.environ.get("INPUT_TEMPERATURE", "0.1"))
+    model_temperature = float(os.environ.get("INPUT_TEMPERATURE", "0.6"))
     model_sample_prompt = os.environ.get("INPUT_MODEL_SAMPLE_PROMPT", SAMPLE_PROMPT)
     model_sample_response = os.environ.get(
         "INPUT_MODEL_SAMPLE_RESPONSE", GOOD_SAMPLE_RESPONSE
