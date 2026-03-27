@@ -18,11 +18,11 @@ inputs:
   openai_model:
     description: 'OpenAI model to use, needs to be compatible with the chat/completions endpoint'
     required: false
-    default: 'gpt-4o'
+    default: 'gpt-5.4'
   max_tokens:
     description: 'Maximum number of prompt tokens to use'
     required: false
-    default: '1000'
+    default: '4096'
   temperature:
     description: 'Temperature for the model, higher values will make the model more creative, lower values will make it more conservative'
     required: false
