@@ -20,7 +20,7 @@ inputs:
     required: false
     default: 'gpt-5.4'
   max_tokens:
-    description: 'Maximum number of prompt tokens to use'
+    description: 'Maximum number of completion tokens to generate'
     required: false
     default: '4096'
   temperature:
